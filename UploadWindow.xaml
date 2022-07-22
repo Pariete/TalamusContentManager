@@ -1,0 +1,23 @@
+﻿<Window x:Class="Talamus_ContentManager.UploadWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Talamus_ContentManager"
+        mc:Ignorable="d"
+        Title="UploadWindow" Height="600" Width="800">
+    <Grid>
+        <TextBox x:Name="tbConnectionString" HorizontalAlignment="Left" Margin="23,60,0,0" TextWrapping="Wrap" Text="Data Source=(LocalDB)\MSSQLLocalDB; Database=TalamusV2; Persist Security Info=false; User ID='padmi'; Password='dnljaf3FFNak3f@3mr'; MultipleActiveResultSets=True; Trusted_Connection=False;" VerticalAlignment="Top" Width="505" Height="60"/>
+        <Label Content="ConnectionStrig:" HorizontalAlignment="Left" Margin="23,34,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbTitle" HorizontalAlignment="Left" Margin="23,125,0,0" TextWrapping="Wrap" Text="Title" VerticalAlignment="Top" Width="377"/>
+        <TextBox x:Name="tbDescription" HorizontalAlignment="Left" Margin="23,171,0,0" TextWrapping="Wrap" Text="Description" VerticalAlignment="Top" Width="662" Height="55"/>
+        <TextBox x:Name="tbAuthor" HorizontalAlignment="Left" Margin="23,148,0,0" TextWrapping="Wrap" Text="Author" VerticalAlignment="Top" Width="377"/>
+        <TextBox x:Name="tbImageURL" HorizontalAlignment="Left" Margin="23,252,0,0" TextWrapping="Wrap" Text="https://drive.google.com/uc?export=view&amp;id=1RefkAT95LCPAOm25HMdOjUCV5qvbIKLy" VerticalAlignment="Top" Width="735" Foreground="#FF001BFF"/>
+        <TextBox x:Name="tbPrice" HorizontalAlignment="Left" Margin="23,306,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="tbUpload" Content="жать сюда" HorizontalAlignment="Left" Margin="243,392,0,0" VerticalAlignment="Top" Height="32" Width="547" Background="Red" Click="tbUpload_Click"/>
+        <TextBlock HorizontalAlignment="Left" Margin="243,328,0,0" TextWrapping="Wrap" Text="Ну давай, попробуй нажми на меня... Если ты всё правильно ввёл, то, может быть, я загружу твою ебучую книгу в базу данных. Но ты же по-любому где-то хуйню ввёл. А я такое не прощаю. Готовься к тысяче ошибок. И готовься к тому, что я сотру все твои бд. И твой хард почищу. И вообще иди нахуй!" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="23,231,0,0" TextWrapping="Wrap" Text="links from google drive, must be formatted like this: https://drive.google.com/uc?export=view&amp;id= ID of image" VerticalAlignment="Top" Foreground="#FF1F00FF"/>
+        <Label Content="Price" HorizontalAlignment="Left" Margin="23,275,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>
