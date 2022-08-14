@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Talamus_ContentManager
+﻿namespace Talamus_ContentManager
 {
     internal static class Configuration
     {

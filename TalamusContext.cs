@@ -8,7 +8,7 @@ namespace Talamus_ContentManager
         public TalamusContext(DbContextOptions<TalamusContext> options)
          : base(options)
         {
-           // Database.EnsureCreated();
+            // Database.EnsureCreated();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -24,5 +24,6 @@ namespace Talamus_ContentManager
         public DbSet<Part> Parts { get; set; }
         public DbSet<Book> Books { get; set; }
         public DbSet<Subsequent> Subsequents { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }

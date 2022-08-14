@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace Talamus_ContentManager.Models
@@ -32,6 +29,7 @@ namespace Talamus_ContentManager.Models
         public string Content { get; set; }
         public Point Position { get; set; }
         public bool FirstPage { get; set; }
+        public bool Demo { get; set; }
     }
 
     [Serializable]
@@ -41,7 +39,7 @@ namespace Talamus_ContentManager.Models
         {
 
         }
-       public Point Start { get; set; }
+        public Point Start { get; set; }
         public Point End { get; set; }
         public Guid StartGuid { get; set; }
         public Guid EndGuid { get; set; }

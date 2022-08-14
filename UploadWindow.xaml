@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="UploadWindow" Height="600" Width="800">
     <Grid>
-        <TextBox x:Name="tbConnectionString" HorizontalAlignment="Left" Margin="23,60,0,0" TextWrapping="Wrap" Text="Data Source=(LocalDB)\MSSQLLocalDB; Database=TalamusV2; Persist Security Info=false; User ID='padmi'; Password='dnljaf3FFNak3f@3mr'; MultipleActiveResultSets=True; Trusted_Connection=False;" VerticalAlignment="Top" Width="505" Height="60"/>
+        <TextBox x:Name="tbConnectionString" HorizontalAlignment="Left" Margin="23,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="505" Height="60"/>
         <Label Content="ConnectionStrig:" HorizontalAlignment="Left" Margin="23,34,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="tbTitle" HorizontalAlignment="Left" Margin="23,125,0,0" TextWrapping="Wrap" Text="Title" VerticalAlignment="Top" Width="377"/>
         <TextBox x:Name="tbDescription" HorizontalAlignment="Left" Margin="23,171,0,0" TextWrapping="Wrap" Text="Description" VerticalAlignment="Top" Width="662" Height="55"/>

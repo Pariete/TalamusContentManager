@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Talamus_ContentManager
 {
@@ -45,11 +38,11 @@ namespace Talamus_ContentManager
         public EditWindow(string? content = null)
         {
             InitializeComponent();
-            
-            if(content == null)
+
+            if (content == null)
             {
                 File.WriteAllText("preview.html", MakeHtmlPage("<--Type somthing"), Encoding.Unicode);
-                
+
             }
             else
             {
@@ -59,7 +52,7 @@ namespace Talamus_ContentManager
             wbPreview.Navigate(path);
         }
 
-         string MakeHtmlPage(string content)
+        string MakeHtmlPage(string content)
         {
             string head = "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"UTF-8\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">" +
                 "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">" +
@@ -83,9 +76,9 @@ namespace Talamus_ContentManager
             {
                 TextRange tr = new TextRange(paragraph.ContentStart, paragraph.ContentEnd);
                 content += "<p>" + tr.Text + "</p>";
-                Content += tr.Text +"\n";
+                Content += tr.Text + "\n";
             }
-            
+
             File.WriteAllText("preview.html", MakeHtmlPage(content), Encoding.Unicode);
             wbPreview.Navigate(path);
         }

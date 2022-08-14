@@ -1,17 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using Talamus_ContentManager.Models;
 
 namespace Talamus_ContentManager
@@ -27,8 +20,9 @@ namespace Talamus_ContentManager
         {
             InitializeComponent();
             book = bs;
+            LoadSettings();
         }
-
+        
         private void tbUpload_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -44,7 +38,7 @@ namespace Talamus_ContentManager
                     Price = Convert.ToInt64(tbPrice.Text)
                 };
 
-                foreach(var item in book.Parts)
+                foreach (var item in book.Parts)
                 {
                     Part p = new Part()
                     {
@@ -53,7 +47,8 @@ namespace Talamus_ContentManager
                         Content = item.Content,
                         Title = item.Title,
                         Created = DateTime.Now,
-                        PageNumber = (item.FirstPage) ? 1 : 2
+                        PageNumber = (item.FirstPage) ? 1 : 2,
+                        DemoEnd = item.Demo
                     };
                     b.Parts.Add(p);
                 }
@@ -61,7 +56,7 @@ namespace Talamus_ContentManager
                 _db.Books.Add(b);
                 _db.SaveChanges();
 
-                foreach(var item in book.Connections)
+                foreach (var item in book.Connections)
                 {
                     Part one = _db.Parts.FirstOrDefault(p => p.Guid == item.StartGuid);
                     Part two = _db.Parts.FirstOrDefault(p => p.Guid == item.EndGuid);
@@ -77,11 +72,32 @@ namespace Talamus_ContentManager
                 _db.SaveChanges();
                 this.DialogResult = true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                MessageBox.Show(ex.Message+"\n"+ ex.StackTrace +"\n"+ex.ToString());
+                MessageBox.Show(ex.Message + "\n" + ex.StackTrace + "\n" + ex.ToString());
                 this.DialogResult = false;
             }
+        }
+        private async Task LoadSettings()
+        {
+            Settings s = new Settings()
+            {
+                BotToken = "",
+                DBPath = ""
+            };
+
+            try
+            {
+                using (FileStream fs = new FileStream("settings", FileMode.Open))
+                {
+                    s = await JsonSerializer.DeserializeAsync<Settings>(fs);
+                }
+            }
+            catch
+            {
+
+            }
+            tbConnectionString.Text = s.DBPath;
         }
     }
 }

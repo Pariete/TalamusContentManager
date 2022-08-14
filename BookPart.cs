@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -10,57 +7,12 @@ using System.Windows.Media;
 
 namespace Talamus_ContentManager
 {
-    
+    //Control element for bookparts 
     public class BookPart : Canvas
     {
-        private string _title = "Default Title";
-        public string Title { get { return _title; } set { _title = value; tbTitle.Text = value; } }
-        public string Content { get; set; } = String.Empty;
-
-        private Point _positionInBlock;
-
-        public delegate void FirstPageHandler(bool value);
-        public event FirstPageHandler FirstPageChanged;
-
-        private bool _firstPage = false;
-        public bool FirstPage { get { return _firstPage; }
-            set { this._firstPage = value; this.FirstPageChanged?.Invoke(value); } } 
-        public Point Position { get; set; }
-
-        public delegate void PositionChangedHandler(Point position);
-        public event PositionChangedHandler PositionChanged;
-
-        public Guid Guid { get; set; }
-
-        TextBox tbTitle;
-        Button btnEditContent;
-        Label lblTitle;
-
-        RadioButton rbConnectionOne;
-
-        Border border;
-        Border borderSP;
-
-        Label lblMainPart;
-
-        public delegate void rbClickHandler(Point rbLocation, object sender);
-        public event rbClickHandler rbClick;
-
-        delegate void SelectionPermamentHandler(bool selected);
-        event SelectionHandler SelectionPermament;
-
-        delegate void SelectionHandler(bool selected);
-        event SelectionHandler Selection;
-
-        private bool _selectedPermament = false;
-        public bool SelectedPermament { get { return _selectedPermament; } set { this._selectedPermament = value; this.SelectionPermament?.Invoke(value); } }
-
-        private bool _selected = false;
-        public bool Selected { get { return this._selected; } set {
-                this._selected = value;
-                Selection?.Invoke(value);
-            } }
-
+        //
+        //CONSTRUCTOR
+        //
         public BookPart()
         {
             // Look of Canvas
@@ -97,23 +49,23 @@ namespace Talamus_ContentManager
             borderSP.BorderThickness = new Thickness(4);
 
             //Label Main Part
-            lblMainPart = new Label();
-            lblMainPart.Content = "\tFIRST PAGE";
-            lblMainPart.Visibility = Visibility.Hidden;
-            lblMainPart.RenderTransform = new TranslateTransform(28, 100);
-            lblMainPart.Foreground = new SolidColorBrush(Colors.Red);
-            lblMainPart.FontSize = 14;
-            lblMainPart.Width = 200;
-            lblMainPart.Height = 28;
-            lblMainPart.HorizontalAlignment = HorizontalAlignment.Center;
-            lblMainPart.VerticalAlignment = VerticalAlignment.Top;
-            lblMainPart.Background = new SolidColorBrush(Colors.Yellow);
-            lblMainPart.Margin = new Thickness(0);
+            lblFirstpage = new Label();
+            lblFirstpage.Content = "\tFIRST PAGE";
+            lblFirstpage.Visibility = Visibility.Hidden;
+            lblFirstpage.RenderTransform = new TranslateTransform(28, 100);
+            lblFirstpage.Foreground = new SolidColorBrush(Colors.Red);
+            lblFirstpage.FontSize = 14;
+            lblFirstpage.Width = 200;
+            lblFirstpage.Height = 28;
+            lblFirstpage.HorizontalAlignment = HorizontalAlignment.Center;
+            lblFirstpage.VerticalAlignment = VerticalAlignment.Top;
+            lblFirstpage.Background = new SolidColorBrush(Colors.Yellow);
+            lblFirstpage.Margin = new Thickness(0);
 
             // Text box Title
             tbTitle = new TextBox();
             tbTitle.Text = "Default Title";
-            tbTitle.RenderTransform = new TranslateTransform(28,26);
+            tbTitle.RenderTransform = new TranslateTransform(28, 26);
             tbTitle.TextWrapping = TextWrapping.Wrap;
             tbTitle.Width = 200;
             tbTitle.Height = 33;
@@ -156,19 +108,164 @@ namespace Talamus_ContentManager
             this.Children.Add(rbConnectionOne);
             this.Children.Add(border);
             this.Children.Add(borderSP);
-            this.Children.Add(lblMainPart);
+            this.Children.Add(lblFirstpage);
+        }
 
+        //
+        //PRIVATE FIELDS
+        //
+        private string _title = "Default Title";
+        private Point _positionInBlock;
+        private bool _firstPage = false;
+        private bool _selectedPermament = false;
+        private bool _selected = false;
+        private Point _position = new Point(0, 0);
+        private TextBox tbTitle;
+        private Button btnEditContent;
+        private Label lblTitle;
+        private RadioButton rbConnectionOne;
+        //border for selection
+        private Border border;
+        //border for permament selection
+        private Border borderSP;
+        private Label lblFirstpage;
+        private bool _demoPart = false;
+
+        //
+        //Delegates and events
+        //
+        public delegate void FirstPageHandler(bool value);
+        // Invoke when change _firstPage field
+        public event FirstPageHandler FirstPageChanged;
+        public delegate void PositionChangedHandler(Point position);
+        //Invoke when position changed
+        public event PositionChangedHandler PositionChanged;
+        public delegate void rbClickHandler(Point rbLocation, object sender);
+        //invoke when radiobutton pressed
+        public event rbClickHandler rbClick;
+        public delegate void SelectionPermamentHandler(bool selected);
+        //Invoke when _selectedPermament changed
+        public event SelectionHandler SelectionPermament;
+        public delegate void SelectionHandler(bool selected);
+        //Invoke when _selected changed
+        public event SelectionHandler Selection;
+
+        //
+        //Properties
+        //
+        public bool Demo
+        {
+            get
+            {
+                return _demoPart;
+            }
+            set
+            {
+                _demoPart = value;
+                if (value)
+                {
+                    PaintDemo();
+                }
+                else
+                {
+                    PaintNormal();
+                }
+            }
+        }
+        public string Title
+        {
+            get
+            {
+                return _title;
+            }
+            set
+            {
+                _title = value;
+                tbTitle.Text = value;
+            }
+        }
+        public string Content { get; set; } = String.Empty;
+        public bool FirstPage
+        {
+            get
+            {
+                return _firstPage;
+            }
+            set
+            {
+                this._firstPage = value;
+                this.FirstPageChanged?.Invoke(value);
+            }
+        }
+        public Point Position
+        {
+            get
+            {
+                return _position;
+            }
+            set
+            {
+                _position = value;
+                this.RenderTransform = new TranslateTransform(value.X, value.Y);
+                PositionChanged?.Invoke(value);
+            }
+        }
+        public Guid Guid { get; set; }
+        public int Id { get; set; }
+        public bool SelectedPermament
+        {
+            get
+            {
+                return _selectedPermament;
+            }
+            set
+            {
+                this._selectedPermament = value;
+                this.SelectionPermament?.Invoke(value);
+            }
+        }
+        public bool Selected
+        {
+            get
+            {
+                return this._selected;
+            }
+            set
+            {
+                this._selected = value;
+                Selection?.Invoke(value);
+            }
+        }
+        //
+        //PRIVATE METHODS
+        //
+        private void PaintNormal()
+        {
+            lblTitle.Content = "Title:";
+            List<GradientStop> gradientStops = new List<GradientStop>();
+            gradientStops.Add(new GradientStop(Color.FromArgb(0xFF, 0xFB, 0xFB, 0xFB), 0));
+            gradientStops.Add(new GradientStop(Color.FromArgb(0xFF, 0xDB, 0x91, 0xF1), 1));
+            this.Background = new LinearGradientBrush(endPoint: new Point(0.5, 1), startPoint: new Point(0.5, 0), gradientStopCollection: new GradientStopCollection(gradientStops));
+
+        }
+        private void PaintDemo()
+        {
+            lblTitle.Content = "(DEMO) Title:";
+            List<GradientStop> gradientStops = new List<GradientStop>();
+            gradientStops.Add(new GradientStop(Color.FromArgb(0xFF, 0xA4, 0x23, 0x23), 0));
+            gradientStops.Add(new GradientStop(Color.FromArgb(0xFF, 0x9C, 0x23, 0xA4), 1));
+            this.Background = new LinearGradientBrush(endPoint: new Point(0.5, 1), startPoint: new Point(0.5, 0), gradientStopCollection: new GradientStopCollection(gradientStops));
         }
 
         private void TbTitle_TextChanged(object sender, TextChangedEventArgs e)
         {
             Title = tbTitle.Text;
         }
-
+        // opening new window  to edit content
         private void BtnEditContent_Click(object sender, RoutedEventArgs e)
         {
             EditWindow ew = new EditWindow(Content);
-            if(ew.ShowDialog() == true)
+            if (ew.ShowDialog() == true)
             {
                 Content = ew.Content;
             }
@@ -178,11 +275,11 @@ namespace Talamus_ContentManager
         {
             if (value)
             {
-                lblMainPart.Visibility = Visibility.Visible;
+                lblFirstpage.Visibility = Visibility.Visible;
             }
             else
             {
-                lblMainPart.Visibility= Visibility.Hidden;
+                lblFirstpage.Visibility = Visibility.Hidden;
             }
         }
 
@@ -201,10 +298,8 @@ namespace Talamus_ContentManager
         private void RbConnectionOne_Click(object sender, RoutedEventArgs e)
         {
             var container = VisualTreeHelper.GetParent(this) as UIElement;
-            rbClick?.Invoke(Mouse.GetPosition(container),this);
+            rbClick?.Invoke(Mouse.GetPosition(container), this);
         }
-
-
         private void BookPart_Selection(bool selected)
         {
             if (selected)
@@ -247,26 +342,21 @@ namespace Talamus_ContentManager
                 double pW = ((Canvas)container).ActualWidth;
                 double pH = ((Canvas)container).ActualHeight;
 
-                // move the usercontrol.
-                if (dX + this.Width<pW  && dY + this.Height< pH && dY>0 && dX > 0)
+                // move the usercontrol
+                if (dX + this.Width < pW && dY + this.Height < pH && dY > 0 && dX > 0)
                 {
-                    this.RenderTransform = new TranslateTransform(mousePosition.X - _positionInBlock.X, mousePosition.Y - _positionInBlock.Y);
                     Position = new Point(mousePosition.X - _positionInBlock.X, mousePosition.Y - _positionInBlock.Y);
-                    PositionChanged?.Invoke(Position);
                 }
-                else if(dX + this.Width < pW && dX > 0)
+                else if (dX + this.Width < pW && dX > 0)
                 {
-                    this.RenderTransform = new TranslateTransform(mousePosition.X - _positionInBlock.X, this.RenderTransform.Value.OffsetY);
                     Position = new Point(mousePosition.X - _positionInBlock.X, this.RenderTransform.Value.OffsetY);
-                    PositionChanged?.Invoke(Position);
 
-                } else if(dY + this.Height < pH && dY > 0)
-                {
-                    this.RenderTransform = new TranslateTransform(this.RenderTransform.Value.OffsetX, mousePosition.Y - _positionInBlock.Y);
-                    Position = new Point(this.RenderTransform.Value.OffsetX, mousePosition.Y - _positionInBlock.Y);
-                    PositionChanged?.Invoke(Position);
                 }
-                
+                else if (dY + this.Height < pH && dY > 0)
+                {
+                    Position = new Point(this.RenderTransform.Value.OffsetX, mousePosition.Y - _positionInBlock.Y);
+                }
+
             }
         }
     }

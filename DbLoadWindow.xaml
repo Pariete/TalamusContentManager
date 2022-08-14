@@ -1,0 +1,17 @@
+﻿<Window x:Class="Talamus_ContentManager.DbLoadWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Talamus_ContentManager"
+        mc:Ignorable="d"
+        Title="DbLoadWindow" Height="350" Width="624">
+    <Grid Margin="0,0,0,-6">
+        <Label x:Name="lbl" Content="Db PATH" HorizontalAlignment="Left" Margin="23,31,0,0" VerticalAlignment="Top" Width="180" Height="29"/>
+        <TextBox x:Name="tbPath" HorizontalAlignment="Left" Margin="23,65,0,0" TextWrapping="Wrap" Text="workstation id=testingwebsitedb.mssql.somee.com;packet size=4096;user id=dmivoriy_SQLLogin_1;pwd=8zmeiwjk6w;data source=testingwebsitedb.mssql.somee.com;persist security info=False;initial catalog=testingwebsitedb" VerticalAlignment="Top" Width="558" Height="124"/>
+        <Label Content="Book ID" HorizontalAlignment="Left" Margin="23,194,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbBookId" HorizontalAlignment="Left" Margin="23,225,0,0" TextWrapping="Wrap" Text="3" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="btnOk" Content="OK" HorizontalAlignment="Left" Margin="23,248,0,0" VerticalAlignment="Top" Width="558" Height="38" IsDefault="True" Click="btnOk_Click"/>
+
+    </Grid>
+</Window>

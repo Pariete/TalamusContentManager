@@ -12,10 +12,17 @@
         <Menu Height="25" VerticalAlignment="Top" Background="#FFE0A2FF">
 
 
-            <RibbonMenuItem Header="File" Height="25">
+            <RibbonMenuItem Header="Options" Height="25">
                 <MenuItem Header="DeleteSaving" x:Name="miDel" Click="miDel_Click"/>
+                <MenuItem Header="Open" x:Name="miOpen" Click="miOpen_Click"/>
                 <MenuItem Header="Save" x:Name="miSave" Click="miSave_Click"/>
+                <MenuItem Header="Save As" x:Name="miSaveAs" Click="miSaveAs_Click"/>
+                <MenuItem Header="Load Current Save" x:Name="miLoad" Click="miLoad_Click"/>
                 <MenuItem Header="RESET" x:Name="miReset" Click="miReset_Click"/>
+                <MenuItem Header="Load from Database" x:Name="miDBLoad" Click="miDBLoad_Click" IsEnabled="False"/>
+                <MenuItem Header="Рассылка" x:Name="miBot" Click="miBot_Click"/>
+                <MenuItem Header="Settings" x:Name="miSettings" Click="miSettings_Click"/>
+
             </RibbonMenuItem>
             <Label Content="Canvas Width:" Focusable="False"/>
             <TextBox x:Name="tbCanvasWidth" TextWrapping="Wrap" Text="900" Width="120" PreviewTextInput="tbCanvasWidth_PreviewTextInput" TextChanged="tbCanvasWidth_TextChanged"/>
@@ -26,6 +33,7 @@
             <Label x:Name="lblMakingFirstMsg" Content=""/>
             <Button x:Name="btnUpload" Content="Upload to DATABASE" Background="#FFFFEA00" Click="btnUpload_Click"/>
             <Button x:Name="btnDeleteSelected" Content="DELETE SELECTED" Background="#FF0A0A0A" Foreground="#FFEC0E0E" Click="btnDeleteSelected_Click"/>
+            <Button x:Name="btnMakeDemo" Content="CHANGE DEMO " Background="#FF0F026D" Foreground="White" Click="btnMakeDemo_Click"/>
 
 
         </Menu>
