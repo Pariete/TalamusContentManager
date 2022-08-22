@@ -47,7 +47,7 @@ namespace Talamus_ContentManager
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message + ex.InnerException, "Хуйня какая-то");
+                MessageBox.Show(ex.Message + ex.InnerException, "Try again");
             }
            
         }

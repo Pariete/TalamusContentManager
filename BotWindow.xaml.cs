@@ -166,7 +166,7 @@ namespace Talamus_ContentManager
                     }
                     else break;
                 }
-                MessageBox.Show(String.Format("Пользователей:{0}\nОтправлено:{1}\nОшибка:{2}\n",_total,_success,_failure), "Всё");
+                MessageBox.Show(String.Format("Пользователей:{0}\nОтправлено:{1}\nОшибка:{2}\n",_total,_success,_failure), "Done");
             },token);
 
             _spam.Start();

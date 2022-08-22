@@ -239,10 +239,6 @@ namespace Talamus_ContentManager
             a.Selected = true;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
 
         private void tbCanvasWidth_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
@@ -384,7 +380,7 @@ namespace Talamus_ContentManager
 
             if (bp == null)
             {
-                MessageBox.Show("You need to specify first page of the book", "Nu ti ebanutiy?");
+                MessageBox.Show("You need to specify first page of the book", "Can`t do this", button: MessageBoxButton.OK, icon:MessageBoxImage.Error);
             }
             else
             {
@@ -425,7 +421,7 @@ namespace Talamus_ContentManager
 
             if (bp == null)
             {
-                MessageBox.Show("You Selected Nothing", "Eblan?");
+                MessageBox.Show("You Selected Nothing", "Can`t do this", button: MessageBoxButton.OK, icon: MessageBoxImage.Error);
             }
             else
             {
@@ -455,7 +451,7 @@ namespace Talamus_ContentManager
 
             if (bp == null)
             {
-                MessageBox.Show("You Selected Nothing", "IDIOT?");
+                MessageBox.Show("You Selected Nothing", "Can`t do this", button: MessageBoxButton.OK, icon: MessageBoxImage.Error);
             }
             else
             {
@@ -487,7 +483,7 @@ namespace Talamus_ContentManager
 
             if(parts==null || subsequents == null)
             {
-                MessageBox.Show("Хуй знает почему, не должно быть такого", "Не получилось");
+                MessageBox.Show("well... try again", "success... oh, no, no success");
             }
             else
             {
@@ -533,7 +529,7 @@ namespace Talamus_ContentManager
 
                     if(StartPage == null || EndPage == null)
                     {
-                        MessageBox.Show("Some connection was lost, because pages was not found", "whatafuk?");
+                        MessageBox.Show("Some connection was lost, because pages was not found", "Error");
                         continue;
                     }
 

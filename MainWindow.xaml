@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Talamus_ContentManager"
         mc:Ignorable="d"
-        Title="Hello Mothertomovietooker" Height="550" Width="1200" Icon="/middle-finger.png" Cursor="Hand">
+        Title="Content manager" Height="550" Width="1200" Icon="/middle-finger.png" Cursor="Hand">
     <Grid>
         <Grid.ColumnDefinitions>
         </Grid.ColumnDefinitions>
@@ -46,7 +46,7 @@
             </ScrollViewer.Background>
             <Canvas x:Name="mainCanvas" Background="#993D2156" Margin="10,30,-4,0" Width="900" Height="450" HorizontalAlignment="Left" VerticalAlignment="Top" Cursor="Arrow">
                 <Border BorderBrush="Black" BorderThickness="1" Height="{Binding ElementName=mainCanvas, Path=ActualHeight}" Width="{Binding ElementName=mainCanvas, Path=ActualWidth}" Panel.ZIndex="99" Margin="-2,-2,2,2"/>
-                 
+                
             </Canvas>
         </ScrollViewer>
 
